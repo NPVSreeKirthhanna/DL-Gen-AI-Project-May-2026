@@ -279,6 +279,12 @@ if submitted:
         st.warning("Please enter a question.")
     elif any(not value.strip() for value in options.values()):
         st.warning("Please enter all five options.")
+    elif "GEMINI_API_KEY" not in st.secrets:
+        st.error(
+            "Gemini API key is not configured. In Streamlit Cloud, open your app's "
+            "Settings → Secrets and add `GEMINI_API_KEY = \"your-api-key\"`, then "
+            "save the settings and restart the app."
+        )
     else:
         prompt = f"""
 You are solving a multiple-choice question.
